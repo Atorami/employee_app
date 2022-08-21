@@ -17,15 +17,31 @@ class App extends Component {
         {name: 'Rob', salary: 200, increase: true, liked: false, id: 1},
         {name: 'Bob', salary: 300, increase: false, liked: false, id: 2},
         {name: 'Matt', salary: 500, increase: true, liked: false, id: 3}
-      ]
+      ],
     }
+    this.maxId = 4
   }
 
   deleteItem = (id) =>{
-    console.log('inside')
     this.setState(({data})=>{
       return {
         data: data.filter(item => item.id !== id)
+      }
+    })
+  }
+
+  addItem = (name, salary) =>{
+    let newItem = {
+      name: name,
+      salary: salary,
+      increase: false,
+      liked: false,
+      id: this.maxId++
+    }
+    this.setState(({data})=>{
+      let newArr = [...data, newItem]
+      return {
+        data: newArr
       }
     })
   }
@@ -43,7 +59,8 @@ class App extends Component {
           <EmployeesList 
           data = {this.state.data}
           onDelete = {this.deleteItem} />
-          <EmployeesAddForm />
+          <EmployeesAddForm 
+          onAdd = {this.addItem}/>
       </div>
     )
   }
