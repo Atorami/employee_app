@@ -18,6 +18,7 @@ class App extends Component {
         {name: 'Bob', salary: 300, increase: false, liked: false, id: 2},
         {name: 'Matt', salary: 500, increase: true, liked: false, id: 3}
       ],
+      term: ''
     }
     this.maxId = 4
   }
@@ -46,19 +47,67 @@ class App extends Component {
     })
   }
 
+  onToggleIncrease = (id) =>{
+
+    this.setState(({data})=>({
+      data: data.map(item=>{
+        if(item.id === id){
+          return {...item, increase: !item.increase}
+        }
+        return item
+      })
+    }))
+  }
+
+  onToggleRise = (id) =>{
+    this.setState(({data})=>({
+      data: data.map(item=>{
+        if(item.id === id){
+          return {...item, liked: !item.liked}
+        }
+        return item
+      })
+    }))
+  }
+
+  serchEmp = (items, term) => {
+    if (term.length === 0){
+      return items
+    }
+
+    return items.filter(item =>{
+      return item.name.indexOf(term) > -1
+    })
+  }
+
+  onUpdateSearch = (term) =>{
+    this.setState({term})
+  }
+
   render(){
+
+    const {data, term} = this.state
+    const emplCounter = this.state.data.length
+    const emplIncr = this.state.data.filter(item=> item.increase).length
+    const visibleData = this.serchEmp(data, term)
+
     return (
       <div className="app">
-          <AppInfo />
-  
+          <AppInfo 
+          emplCounter = {emplCounter}
+          emplIncr = {emplIncr}
+          />
           <div className="search-panel">
-              <SearchPanel/>
+              <SearchPanel
+              onUpdateSearch = {this.onUpdateSearch}/>
               <AppFilter/>
           </div>
           
           <EmployeesList 
-          data = {this.state.data}
-          onDelete = {this.deleteItem} />
+          data = {visibleData}
+          onDelete = {this.deleteItem}
+          onToggleIncrease = {this.onToggleIncrease}
+          onToggleRise = {this.onToggleRise} />
           <EmployeesAddForm 
           onAdd = {this.addItem}/>
       </div>
