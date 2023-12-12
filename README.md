@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Simple React Employee Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![javascript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-61DAFB.svg?style=flat&logo=react&logoColor=white)
+![css](https://img.shields.io/badge/CSS3-1572B6.svg?style=flat&logo=css3&logoColor=white)
 
-## Available Scripts
+### Description:
 
-In the project directory, you can run:
+The Simple React Employee Management System is a straightforward web application designed as a basic CRUD (Create, Read, Update, Delete) system. The primary functionality revolves around managing a list of employees, allowing users to perform essential actions such as adding, removing, updating, and filtering employee records.
 
-### `npm start`
+### Gh-pages:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[![Link](https://img.shields.io/badge/Link-%20Employee_app-blue?style=flat&logo=link&logoColor=white)](https://atorami.github.io/employee_app/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Key Features:
 
-### `npm test`
+- Employee Addition: Users can easily add new employees to the system, providing basic information such as name, position, and contact details.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Employee Deletion: The application supports the removal of employees from the list, allowing for straightforward management and maintenance of the employee database.
 
-### `npm run build`
+- Employee Promotion: Users have the ability to update employee details, including promotions, to reflect changes in their roles or positions within the organization.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Employee Display: The system provides a clear and organized display of all employees, showcasing their essential information in a user-friendly format.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Employee Filtering: Users can filter the list of employees based on specific criteria, streamlining the process of finding and managing relevant records.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Technologies Used:
 
-### `npm run eject`
+- React
+- State management for CRUD operations
+- Basic styling with CSS
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### How to Run the Project:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone the repository from GitHub.
+1. Navigate to the project directory.
+1. Run npm install to install dependencies.
+1. Execute npm start to launch the application locally.
+1. Open your browser and visit the specified address to experience the Simple React Employee Management System.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### App screenshot:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![App Screenshot](employee-app.png)
