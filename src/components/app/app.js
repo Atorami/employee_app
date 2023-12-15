@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <AppInfo></AppInfo>
+      <AppInfo emplCounter={isSuccess ? employeesList.lenght : ""}></AppInfo>
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />
