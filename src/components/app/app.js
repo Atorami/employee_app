@@ -18,8 +18,13 @@ export default function App() {
       <AppInfo></AppInfo>
       <div className="search-panel">
         <SearchPanel />
+        <AppFilter />
       </div>
-      <EmployeesList data={employeesList}></EmployeesList>
+      {isSuccess ? (
+        <EmployeesList data={employeesList}></EmployeesList>
+      ) : (
+        <EmployeesList data={[]}></EmployeesList>
+      )}
       <EmployeesAddForm></EmployeesAddForm>
     </div>
   );
