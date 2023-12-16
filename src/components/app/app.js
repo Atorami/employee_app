@@ -1,5 +1,7 @@
-import { Component, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useGetAllEmployeesQuery } from "../../redux/apiSlice";
+import { setEmplInfo } from "../../redux/emplListSlice";
 
 import AppInfo from "../app-info/app-info";
 import SearchPanel from "../search-panel/search-panel";
@@ -8,21 +10,35 @@ import EmployeesList from "../employees-list/employees-list";
 import EmployeesAddForm from "../employees-add-form/employees-add-form";
 
 import "./app.css";
+import { PulseLoader } from "react-spinners";
 
 export default function App() {
-  const { data: employeesList, isSuccess } = useGetAllEmployeesQuery();
+  const dispatch = useDispatch();
+  const { data: fetchData, isSuccess: fetchStatus } = useGetAllEmployeesQuery();
+  const dataList = useSelector((state) => state.empl);
+
+  const [emplData, setEmplData] = useState({
+    emplList: [],
+    isSuccess: false,
+  });
+
+  useEffect(() => {
+    if (fetchStatus) {
+      dispatch(setEmplInfo({ emplList: fetchData, isSuccess: fetchStatus }));
+    }
+  }, [fetchData, fetchStatus, dispatch]);
 
   return (
     <div className="app">
-      <AppInfo emplCounter={isSuccess ? employeesList.length : ""}></AppInfo>
+      <AppInfo emplCounter={fetchStatus ? emplData.length : ""}></AppInfo>
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />
       </div>
-      {isSuccess ? (
-        <EmployeesList data={employeesList}></EmployeesList>
+      {fetchStatus ? (
+        <EmployeesList data={emplData.emplList}></EmployeesList>
       ) : (
-        <EmployeesList data={[]}></EmployeesList>
+        <PulseLoader color="#3d5a80" speedMultiplier={0.5} size={7} />
       )}
       <EmployeesAddForm></EmployeesAddForm>
     </div>

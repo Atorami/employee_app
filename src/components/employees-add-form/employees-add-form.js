@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./employees-add-form.css";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchEmplData } from "../../redux/emplListSlice";
+import { useDispatch } from "react-redux";
+import { setAddNewEmployee } from "../../redux/emplListSlice";
 
 export const EmployeesAddForm = () => {
   const dispatch = useDispatch();
-  const emplInfo = useSelector((state) => state.empl);
-  const addEmpl = useSelector((state) => state.empl);
-  console.log(emplInfo);
 
   const [formData, setFromData] = useState({
     emplName: "",
@@ -27,13 +24,15 @@ export const EmployeesAddForm = () => {
 
   const handleFormSubmit = (formData, e) => {
     e.preventDefault();
-    dispatch(emplInfo(formData));
-    dispatch(addEmpl(formData));
+    dispatch(setAddNewEmployee(formData));
+    setFromData({
+      emplName: "",
+      emplSurname: "",
+      emplPosition: "",
+      emplDepartment: "",
+      emplSalary: "",
+    });
   };
-
-  useEffect(() => {
-    dispatch(fetchEmplData);
-  }, [dispatch]);
 
   return (
     <div className="app-add-form">
