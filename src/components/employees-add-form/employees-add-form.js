@@ -10,7 +10,7 @@ export const EmployeesAddForm = () => {
     name: "",
     surname: "",
     position: "",
-    departament: "",
+    department: "",
     salary: "",
   });
 
@@ -25,13 +25,13 @@ export const EmployeesAddForm = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-    dispatch(setAddNewEmployee(formData));
+    dispatch(setAddNewEmployee({ formData }));
 
     setFormData({
       name: "",
       surname: "",
       position: "",
-      departament: "",
+      department: "",
       salary: "",
     });
   };
@@ -68,8 +68,8 @@ export const EmployeesAddForm = () => {
           type="text"
           className="form-control new-post-label"
           placeholder="Department"
-          name="departament"
-          value={formData.departament}
+          name="department"
+          value={formData.department}
           onChange={handleInputChange}
         />
         <input

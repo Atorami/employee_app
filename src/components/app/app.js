@@ -25,7 +25,9 @@ export default function App() {
 
   return (
     <div className="app">
-      <AppInfo emplCounter={fetchStatus ? dataList.length : ""}></AppInfo>
+      <AppInfo
+        emplCounter={fetchStatus ? dataList.emplList.length : ""}
+      ></AppInfo>
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />
