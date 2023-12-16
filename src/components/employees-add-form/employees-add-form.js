@@ -47,6 +47,7 @@ export const EmployeesAddForm = () => {
           name="name"
           value={formData.name}
           onChange={handleInputChange}
+          required
         />
         <input
           type="text"
@@ -55,6 +56,7 @@ export const EmployeesAddForm = () => {
           name="surname"
           value={formData.surname}
           onChange={handleInputChange}
+          required
         />
         <input
           type="text"
@@ -63,6 +65,7 @@ export const EmployeesAddForm = () => {
           name="position"
           value={formData.position}
           onChange={handleInputChange}
+          required
         />
         <input
           type="text"
@@ -71,6 +74,7 @@ export const EmployeesAddForm = () => {
           name="department"
           value={formData.department}
           onChange={handleInputChange}
+          required
         />
         <input
           type="number"
@@ -79,6 +83,7 @@ export const EmployeesAddForm = () => {
           name="salary"
           value={formData.salary}
           onChange={handleInputChange}
+          required
         />
 
         <button type="submit" className="btn btn-outline-light">

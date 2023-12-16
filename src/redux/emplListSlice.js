@@ -16,7 +16,10 @@ const emplListSlice = createSlice({
     },
     setAddNewEmployee(state, action) {
       const newEmpl = {
-        id: state.emplList[state.emplList.length - 1].id + 1,
+        id:
+          state.emplList.length !== 0
+            ? state.emplList[state.emplList.length - 1].id + 1
+            : 0,
         ...action.payload.formData,
       };
       console.log(newEmpl);
