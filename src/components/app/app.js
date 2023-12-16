@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, useEffect } from "react";
 import { useGetAllEmployeesQuery } from "../../redux/apiSlice";
 
 import AppInfo from "../app-info/app-info";
@@ -11,11 +11,10 @@ import "./app.css";
 
 export default function App() {
   const { data: employeesList, isSuccess } = useGetAllEmployeesQuery();
-  console.log(employeesList);
 
   return (
     <div className="app">
-      <AppInfo emplCounter={isSuccess ? employeesList.lenght : ""}></AppInfo>
+      <AppInfo emplCounter={isSuccess ? employeesList.length : ""}></AppInfo>
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />
