@@ -1,46 +1,75 @@
+import { useState } from "react";
 import "./employees-add-form.css";
 import { useDispatch, useSelector } from "react-redux";
 
 export const EmployeesAddForm = () => {
+  const dispatch = useDispatch();
   const emplInfo = useSelector((state) => state.empl);
+
+  const [formData, setFromData] = useState({
+    emplName: "",
+    emplSurname: "",
+    emplPosition: "",
+    emplDepartment: "",
+    emplSalary: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setFromData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = (formData) => {
+    dispatch(emplInfo(formData));
+  };
+
   return (
     <div className="app-add-form">
       <h3>Add a new employee</h3>
-      <form className="add-form d-flex">
+      <form className="add-form d-flex" onSubmit={handleFormSubmit}>
         <input
           type="text"
           className="form-control new-post-label"
           placeholder="Employee's name"
-          name="name"
-          value={emplInfo.emplName}
+          name="emplName"
+          value={formData.emplName}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           className="form-control new-post-label"
           placeholder="Employee's surname"
-          name="salary"
-          value={emplInfo.emplSurname}
+          name="emplSurname"
+          value={formData.emplSurname}
+          onChange={handleInputChange}
         />
         <input
-          type="number"
+          type="text"
           className="form-control new-post-label"
           placeholder="Position"
-          name="salary"
-          value={emplInfo.emplPosition}
+          name="emplPosition"
+          value={formData.emplPosition}
+          onChange={handleInputChange}
         />
         <input
-          type="number"
+          type="text"
           className="form-control new-post-label"
           placeholder="Department"
-          name="salary"
-          value={emplInfo.emplDepartment}
+          name="emplDepartment"
+          value={formData.emplDepartment}
+          onChange={handleInputChange}
         />
         <input
           type="number"
           className="form-control new-post-label"
           placeholder="Salary amount"
-          name="salary"
-          value={emplInfo.emplSalary}
+          name="emplSalary"
+          value={formData.emplSalary}
+          onChange={handleInputChange}
         />
 
         <button type="submit" className="btn btn-outline-light">
