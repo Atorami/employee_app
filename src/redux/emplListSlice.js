@@ -5,21 +5,25 @@ const initialState = {
   isSuccess: false,
 };
 
-console.log(initialState);
-
 const emplListSlice = createSlice({
   name: "empl",
   initialState,
   reducers: {
     setEmplInfo(state, action) {
-      state.emplList = action.payload.fetchData;
+      state.emplList = [...state.emplList, ...action.payload.fetchData];
       state.isSuccess = action.payload.fetchStatus;
-      console.log("setEmplInfo w sore" + action.payload.emplList[0]["name"]);
+      console.log(state.emplList);
     },
     setAddNewEmployee(state, action) {
-      state.emplList = action.payload.formData;
-      state.isSuccess = action.payload.isSuccess;
-      console.log(state.emplList);
+      const newEpl = {
+        id: state.emplList[state.emplList.length - 1].id + 1,
+        ...action.payload.formData,
+      };
+      console.log(newEpl);
+      return {
+        ...state,
+        emplList: [...state.emplList, newEpl],
+      };
     },
   },
 });

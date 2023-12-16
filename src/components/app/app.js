@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetAllEmployeesQuery } from "../../redux/apiSlice";
 import { setEmplInfo } from "../../redux/emplListSlice";
@@ -17,26 +17,21 @@ export default function App() {
   const { data: fetchData, isSuccess: fetchStatus } = useGetAllEmployeesQuery();
   const dataList = useSelector((state) => state.empl);
 
-  const [emplData, setEmplData] = useState({
-    emplList: [],
-    isSuccess: false,
-  });
-
   useEffect(() => {
     if (fetchStatus) {
-      dispatch(setEmplInfo({ emplList: fetchData, isSuccess: fetchStatus }));
+      dispatch(setEmplInfo({ fetchData: fetchData, fetchStatus: fetchStatus }));
     }
   }, [fetchData, fetchStatus, dispatch]);
 
   return (
     <div className="app">
-      <AppInfo emplCounter={fetchStatus ? emplData.length : ""}></AppInfo>
+      <AppInfo emplCounter={fetchStatus ? dataList.length : ""}></AppInfo>
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />
       </div>
       {fetchStatus ? (
-        <EmployeesList data={emplData.emplList}></EmployeesList>
+        <EmployeesList data={dataList.emplList}></EmployeesList>
       ) : (
         <PulseLoader color="#3d5a80" speedMultiplier={0.5} size={7} />
       )}

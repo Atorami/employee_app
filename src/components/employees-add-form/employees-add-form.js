@@ -6,31 +6,33 @@ import { setAddNewEmployee } from "../../redux/emplListSlice";
 export const EmployeesAddForm = () => {
   const dispatch = useDispatch();
 
-  const [formData, setFromData] = useState({
-    emplName: "",
-    emplSurname: "",
-    emplPosition: "",
-    emplDepartment: "",
-    emplSalary: "",
+  const [formData, setFormData] = useState({
+    name: "",
+    surname: "",
+    position: "",
+    departament: "",
+    salary: "",
   });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFromData({
-      ...formData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
-    });
+    }));
   };
 
-  const handleFormSubmit = (formData, e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
     dispatch(setAddNewEmployee(formData));
-    setFromData({
-      emplName: "",
-      emplSurname: "",
-      emplPosition: "",
-      emplDepartment: "",
-      emplSalary: "",
+
+    setFormData({
+      name: "",
+      surname: "",
+      position: "",
+      departament: "",
+      salary: "",
     });
   };
 
@@ -42,40 +44,40 @@ export const EmployeesAddForm = () => {
           type="text"
           className="form-control new-post-label"
           placeholder="Employee's name"
-          name="emplName"
-          value={formData.emplName}
+          name="name"
+          value={formData.name}
           onChange={handleInputChange}
         />
         <input
           type="text"
           className="form-control new-post-label"
           placeholder="Employee's surname"
-          name="emplSurname"
-          value={formData.emplSurname}
+          name="surname"
+          value={formData.surname}
           onChange={handleInputChange}
         />
         <input
           type="text"
           className="form-control new-post-label"
           placeholder="Position"
-          name="emplPosition"
-          value={formData.emplPosition}
+          name="position"
+          value={formData.position}
           onChange={handleInputChange}
         />
         <input
           type="text"
           className="form-control new-post-label"
           placeholder="Department"
-          name="emplDepartment"
-          value={formData.emplDepartment}
+          name="departament"
+          value={formData.departament}
           onChange={handleInputChange}
         />
         <input
           type="number"
           className="form-control new-post-label"
           placeholder="Salary amount"
-          name="emplSalary"
-          value={formData.emplSalary}
+          name="salary"
+          value={formData.salary}
           onChange={handleInputChange}
         />
 
