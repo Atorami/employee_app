@@ -25,8 +25,14 @@ const emplListSlice = createSlice({
         emplList: [...state.emplList, newEmpl],
       };
     },
+    setDeleteEmployee(state, action) {
+      state.emplList = state.emplList.filter(
+        (val) => val.id !== action.payload
+      );
+    },
   },
 });
 
-export const { setEmplInfo, setAddNewEmployee } = emplListSlice.actions;
+export const { setEmplInfo, setAddNewEmployee, setDeleteEmployee } =
+  emplListSlice.actions;
 export default emplListSlice.reducer;
