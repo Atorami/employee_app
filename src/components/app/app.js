@@ -35,7 +35,12 @@ export default function App() {
       {fetchStatus ? (
         <EmployeesList data={dataList.emplList}></EmployeesList>
       ) : (
-        <PulseLoader color="#3d5a80" speedMultiplier={0.5} size={7} />
+        <PulseLoader
+          color="#3d5a80"
+          speedMultiplier={0.5}
+          size={7}
+          align="center"
+        />
       )}
       <EmployeesAddForm></EmployeesAddForm>
     </div>
