@@ -2,8 +2,8 @@
 
 ![javascript](https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=javascript&logoColor=black)
 ![React](https://img.shields.io/badge/React-61DAFB.svg?style=flat&logo=react&logoColor=white)
+![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-764ABC.svg?style=flat&logo=redux&logoColor=white)
 ![css](https://img.shields.io/badge/CSS3-1572B6.svg?style=flat&logo=css3&logoColor=white)
-[![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-764ABC.svg?style=flat&logo=redux&logoColor=white)]
 
 ### Update Info:
 
