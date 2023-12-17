@@ -1,15 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./search-panel.css";
-import { useState } from "react";
+import { setQuery } from "../../redux/slices/filterSlice";
 
 export const SearchPanel = () => {
+  const dispatch = useDispatch();
+  const query = useSelector((state) => state.search.query);
   const emplList = useSelector((state) => state.empl.emplList);
-  const [filtredEmpl, setFiltredEmp] = useState(emplList);
-  const [empl, setEmpl] = useState("");
 
   const handleInputChange = (e) => {
-    setEmpl(e.target.value);
-    console.log(empl);
+    dispatch(setQuery(e.target.value));
+    console.log(e.target.value);
   };
 
   return (
@@ -17,37 +17,10 @@ export const SearchPanel = () => {
       type="text"
       className="form-control search-input"
       placeholder="Find an employee"
-      value={empl}
+      value={query}
       onChange={handleInputChange}
     />
   );
 };
-
-// class SearchPanel extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       term: "",
-//     };
-//   }
-
-//   onUpdateSearch = (e) => {
-//     const term = e.target.value;
-//     this.setState({ term });
-//     this.props.onUpdateSearch(term);
-//   };
-
-//   render() {
-//     return (
-//       <input
-//         type="text"
-//         className="form-control search-input"
-//         placeholder="Find an employee"
-//         value={this.state.term}
-//         onChange={this.onUpdateSearch}
-//       />
-//     );
-//   }
-// }
 
 export default SearchPanel;

@@ -1,14 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { employeeApi } from "./slices/apiSlice";
 import empl from "./slices/emplListSlice";
 import search from "./slices/filterSlice";
 
+const rootReducer = combineReducers({
+  [employeeApi.reducerPath]: employeeApi.reducer,
+  empl,
+  search,
+});
+
 export const store = configureStore({
-  reducer: {
-    [employeeApi.reducerPath]: employeeApi.reducer,
-    empl,
-    search,
-  },
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(employeeApi.middleware),
 });
