@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { employeeApi } from "./slices/apiSlice";
 import empl from "./slices/emplListSlice";
-import search from "./slices/filterSlice";
+import search from "./slices/searchSlice";
 
 const rootReducer = combineReducers({
   [employeeApi.reducerPath]: employeeApi.reducer,

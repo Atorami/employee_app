@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./search-panel.css";
-import { setQuery } from "../../redux/slices/filterSlice";
+import { setQuery } from "../../redux/slices/searchSlice";
 
 export const SearchPanel = () => {
   const dispatch = useDispatch();
