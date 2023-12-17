@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetAllEmployeesQuery } from "../../redux/slices/apiSlice";
 import { setEmplInfo } from "../../redux/slices/emplListSlice";
+import { setQuery } from "../../redux/slices/filterSlice";
 
 import AppInfo from "../app-info/app-info";
 import SearchPanel from "../search-panel/search-panel";
@@ -16,6 +17,7 @@ export default function App() {
   const dispatch = useDispatch();
   const { data: fetchData, isSuccess: fetchStatus } = useGetAllEmployeesQuery();
   const dataList = useSelector((state) => state.empl);
+  const searchQuery = useSelector((state) => state.search.query);
 
   useEffect(() => {
     if (fetchStatus) {
@@ -33,7 +35,13 @@ export default function App() {
         <AppFilter />
       </div>
       {fetchStatus ? (
-        <EmployeesList data={dataList.emplList}></EmployeesList>
+        <EmployeesList
+          data={dataList.emplList.filter(
+            (val) =>
+              val.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+              val.surname.toLowerCase().includes(searchQuery.toLowerCase())
+          )}
+        ></EmployeesList>
       ) : (
         <PulseLoader
           color="#3d5a80"
