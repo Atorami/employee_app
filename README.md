@@ -4,6 +4,10 @@
 ![React](https://img.shields.io/badge/React-61DAFB.svg?style=flat&logo=react&logoColor=white)
 ![css](https://img.shields.io/badge/CSS3-1572B6.svg?style=flat&logo=css3&logoColor=white)
 
+### Update Info:
+
+Project has undergone significant updates. The project now leverages Redux Toolkit and RTK Query for efficient state management and API integration. Additionally, the functionality for employee search and addition has been revamped, incorporating slices and transitioning from class components to functional components.
+
 ### Description:
 
 The Simple React Employee Management System is a straightforward web application designed as a basic CRUD (Create, Read, Update, Delete) system. The primary functionality revolves around managing a list of employees, allowing users to perform essential actions such as adding, removing, updating, and filtering employee records.
@@ -27,7 +31,8 @@ The Simple React Employee Management System is a straightforward web application
 ### Technologies Used:
 
 - React
-- State management for CRUD operations
+- Redux Toolkit for state management
+- RTK Query for API integration
 - Basic styling with CSS
 
 ### How to Run the Project:
