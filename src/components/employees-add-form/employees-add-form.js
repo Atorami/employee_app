@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./employees-add-form.css";
 import { useDispatch } from "react-redux";
-import { setAddNewEmployee } from "../../redux/emplListSlice";
+import { setAddNewEmployee } from "../../redux/slices/emplListSlice";
 
 export const EmployeesAddForm = () => {
   const dispatch = useDispatch();

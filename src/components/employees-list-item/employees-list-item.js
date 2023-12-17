@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setDeleteEmployee } from "../../redux/emplListSlice";
+import { setDeleteEmployee } from "../../redux/slices/emplListSlice";
 
 import "./employees-list-item.css";
 
