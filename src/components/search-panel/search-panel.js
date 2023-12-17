@@ -9,6 +9,7 @@ export const SearchPanel = () => {
 
   const handleInputChange = (e) => {
     setEmpl(e.target.value);
+    console.log(empl);
   };
 
   return (
