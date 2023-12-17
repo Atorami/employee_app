@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   emplList: [],
   isSuccess: false,
+  promoted: 0,
 };
 
 const emplListSlice = createSlice({
@@ -12,7 +13,6 @@ const emplListSlice = createSlice({
     setEmplInfo(state, action) {
       state.emplList = [...state.emplList, ...action.payload.fetchData];
       state.isSuccess = action.payload.fetchStatus;
-      console.log(state.emplList);
     },
     setAddNewEmployee(state, action) {
       const newEmpl = {
@@ -22,7 +22,6 @@ const emplListSlice = createSlice({
             : 0,
         ...action.payload.formData,
       };
-      console.log(newEmpl);
       return {
         ...state,
         emplList: [...state.emplList, newEmpl],
@@ -33,9 +32,17 @@ const emplListSlice = createSlice({
         (val) => val.id !== action.payload
       );
     },
+    setPromoteEmployee(state, action) {
+      state.emplList = state.empl;
+      console.log(action.payload);
+    },
   },
 });
 
-export const { setEmplInfo, setAddNewEmployee, setDeleteEmployee } =
-  emplListSlice.actions;
+export const {
+  setEmplInfo,
+  setAddNewEmployee,
+  setDeleteEmployee,
+  setPromoteEmployee,
+} = emplListSlice.actions;
 export default emplListSlice.reducer;

@@ -17,9 +17,11 @@ export default function App() {
   const { data: fetchData, isSuccess: fetchStatus } = useGetAllEmployeesQuery();
   const dataList = useSelector((state) => state.empl);
   const searchQuery = useSelector((state) => state.search.query);
-  const clearFilter = useSelector((state) => state.filter.all);
-  const salaryFilter = useSelector((state) => state.filter.salary);
-  const promoteFilter = useSelector((state) => state.filter.promote);
+  const {
+    all: clearFilter,
+    salary: salaryFilter,
+    promote: promoteFilter,
+  } = useSelector((state) => state.filter);
 
   useEffect(() => {
     if (fetchStatus) {
@@ -40,7 +42,7 @@ export default function App() {
     } else if (promoteFilter) {
       return val.promoted;
     } else if (salaryFilter) {
-      return Number(val.salary) > 70000;
+      return Number(val.salary) > 7000;
     }
 
     return nameMatches || surnameMatches;
@@ -48,7 +50,7 @@ export default function App() {
 
   return (
     <div className="app">
-      <AppInfo emplCounter={fetchStatus ? filteredData.length : ""}></AppInfo>
+      <AppInfo></AppInfo>
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />

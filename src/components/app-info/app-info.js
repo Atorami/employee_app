@@ -1,11 +1,15 @@
+import { useSelector } from "react-redux";
 import "./app-info.css";
 
-const AppInfo = ({ emplCounter, emplIncr }) => {
+const AppInfo = () => {
+  const { emplList: emplCounter, promoted: promotedCounter } = useSelector(
+    (state) => state.empl
+  );
   return (
     <div className="app-info">
       <h1>Employee Management System</h1>
-      <h2>Number of employees: {emplCounter} </h2>
-      <h2>Will get a promotion: {emplIncr} </h2>
+      <h2>Number of employees: {emplCounter.length} </h2>
+      <h2>Will get a promotion: {promotedCounter} </h2>
     </div>
   );
 };

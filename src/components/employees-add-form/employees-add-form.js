@@ -24,7 +24,6 @@ export const EmployeesAddForm = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     dispatch(setAddNewEmployee({ formData }));
 
     setFormData({

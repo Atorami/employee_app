@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { setDeleteEmployee } from "../../redux/slices/emplListSlice";
+import { setPromoteEmployee } from "../../redux/slices/emplListSlice";
 
 import "./employees-list-item.css";
 
@@ -21,7 +22,11 @@ const EmployeesListItem = (props) => {
         defaultValue={salary + "$"}
       />
       <div className="d-flex justify-content-center align-items-center">
-        <button type="button" className="btn-cookie btn-sm ">
+        <button
+          type="button"
+          className="btn-cookie btn-sm "
+          onClick={() => dispatch(setPromoteEmployee(id))}
+        >
           <i className="fas fa-cookie"></i>
         </button>
 
