@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetAllEmployeesQuery } from "../../redux/slices/apiSlice";
 import { setEmplInfo } from "../../redux/slices/emplListSlice";
-import { setQuery } from "../../redux/slices/filterSlice";
 
 import AppInfo from "../app-info/app-info";
 import SearchPanel from "../search-panel/search-panel";

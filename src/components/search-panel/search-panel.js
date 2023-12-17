@@ -5,7 +5,6 @@ import { setQuery } from "../../redux/slices/filterSlice";
 export const SearchPanel = () => {
   const dispatch = useDispatch();
   const query = useSelector((state) => state.search.query);
-  const emplList = useSelector((state) => state.empl.emplList);
 
   const handleInputChange = (e) => {
     dispatch(setQuery(e.target.value));
