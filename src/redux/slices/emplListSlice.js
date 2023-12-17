@@ -33,8 +33,11 @@ const emplListSlice = createSlice({
       );
     },
     setPromoteEmployee(state, action) {
-      state.emplList = state.empl;
-      console.log(action.payload);
+      const employee = state.emplList.find((val) => val.id === action.payload);
+      if (employee) {
+        employee.promoted = !employee.promoted;
+        state.promoted += employee.promoted ? 1 : -1;
+      }
     },
   },
 });
