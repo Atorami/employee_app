@@ -28,6 +28,12 @@ const emplListSlice = createSlice({
       };
     },
     setDeleteEmployee(state, action) {
+      const deletedEmployee = state.emplList.find(
+        (val) => val.id === action.payload
+      );
+      if (deletedEmployee && deletedEmployee.promoted) {
+        state.promoted -= 1; //delete from promoted
+      }
       state.emplList = state.emplList.filter(
         (val) => val.id !== action.payload
       );
