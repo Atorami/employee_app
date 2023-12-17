@@ -17,6 +17,9 @@ export default function App() {
   const { data: fetchData, isSuccess: fetchStatus } = useGetAllEmployeesQuery();
   const dataList = useSelector((state) => state.empl);
   const searchQuery = useSelector((state) => state.search.query);
+  const clearFilter = useSelector((state) => state.filter.all);
+  const salaryFilter = useSelector((state) => state.filter.salary);
+  const promoteFilter = useSelector((state) => state.filter.promote);
 
   useEffect(() => {
     if (fetchStatus) {
@@ -24,23 +27,34 @@ export default function App() {
     }
   }, [fetchData, fetchStatus, dispatch]);
 
+  const filteredData = dataList.emplList.filter((val) => {
+    const nameMatches = val.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const surnameMatches = val.surname
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
+    if (clearFilter) {
+      return true;
+    } else if (promoteFilter) {
+      return val.promoted;
+    } else if (salaryFilter) {
+      return Number(val.salary) > 70000;
+    }
+
+    return nameMatches || surnameMatches;
+  });
+
   return (
     <div className="app">
-      <AppInfo
-        emplCounter={fetchStatus ? dataList.emplList.length : ""}
-      ></AppInfo>
+      <AppInfo emplCounter={fetchStatus ? filteredData.length : ""}></AppInfo>
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />
       </div>
       {fetchStatus ? (
-        <EmployeesList
-          data={dataList.emplList.filter(
-            (val) =>
-              val.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-              val.surname.toLowerCase().includes(searchQuery.toLowerCase())
-          )}
-        ></EmployeesList>
+        <EmployeesList data={filteredData}></EmployeesList>
       ) : (
         <PulseLoader
           color="#3d5a80"
