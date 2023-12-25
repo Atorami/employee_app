@@ -5,7 +5,7 @@ import { RootState } from "@reduxjs/toolkit/query/react";
 
 const AppInfo:React.FC = () => {
     const { emplList: emplCounter, promoted: promotedCounter } = useSelector(
-        (state: RootState) => {
+        (state: RootState<any, any, any>) => {
             return state.empl;
         }
     );

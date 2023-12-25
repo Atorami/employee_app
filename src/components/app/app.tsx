@@ -11,31 +11,32 @@ import EmployeesAddForm from "../employees-add-form/employees-add-form";
 
 import "./app.css";
 import { PulseLoader } from "react-spinners";
+import { RootState } from "../../redux/store";
 
-export default function App() {
+const App: React.FC = () => {
   const dispatch = useDispatch();
   const { data: fetchData, isSuccess: fetchStatus } = useGetAllEmployeesQuery();
-  const dataList = useSelector((state) => state.empl);
-  const searchQuery = useSelector((state) => state.search.query);
+  const dataList = useSelector((state: RootState) => state.empl);
+  const searchQuery = useSelector((state: RootState) => state.search.query);
   const {
     all: clearFilter,
     salary: salaryFilter,
     promote: promoteFilter,
-  } = useSelector((state) => state.filter);
+  } = useSelector((state: RootState) => state.filter);
 
   useEffect(() => {
     if (fetchStatus) {
-      dispatch(setEmplInfo({ fetchData: fetchData, fetchStatus: fetchStatus }));
+      dispatch(setEmplInfo({ fetchData, fetchStatus }));
     }
   }, [fetchData, fetchStatus, dispatch]);
 
   const filteredData = dataList.emplList.filter((val) => {
     const nameMatches = val.name
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
     const surnameMatches = val.surname
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
 
     if (clearFilter) {
       return true;
@@ -49,23 +50,20 @@ export default function App() {
   });
 
   return (
-    <div className="app">
-      <AppInfo></AppInfo>
-      <div className="search-panel">
-        <SearchPanel />
-        <AppFilter />
+      <div className="app">
+        <AppInfo />
+        <div className="search-panel">
+          <SearchPanel />
+          <AppFilter />
+        </div>
+        {fetchStatus ? (
+            <EmployeesList data={filteredData} />
+        ) : (
+            <PulseLoader color="#3d5a80" speedMultiplier={0.5} size={7} align="center" />
+        )}
+        <EmployeesAddForm />
       </div>
-      {fetchStatus ? (
-        <EmployeesList data={filteredData}></EmployeesList>
-      ) : (
-        <PulseLoader
-          color="#3d5a80"
-          speedMultiplier={0.5}
-          size={7}
-          align="center"
-        />
-      )}
-      <EmployeesAddForm></EmployeesAddForm>
-    </div>
   );
-}
+};
+
+export default App;
