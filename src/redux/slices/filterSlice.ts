@@ -1,6 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+interface FilterState {
+  all: boolean;
+  salary: boolean;
+  promote: boolean;
+}
+
+const initialState:FilterState = {
   all: false,
   salary: false,
   promote: false,
@@ -12,7 +18,7 @@ const filterSlice = createSlice({
   reducers: {
     setClearFilter: (state, action) => {
       state.all = action.payload;
-      //clear an other filters
+      //clear another filters
       state.salary = false;
       state.promote = false;
     },

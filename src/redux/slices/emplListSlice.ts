@@ -1,6 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-const initialState = {
+
+//description how Employee data looks
+interface Employee {
+  id: number;
+  name: string;
+  surname: string;
+  position: string;
+  department: string;
+  salary: number;
+}
+
+//state interface description
+interface EmplListState {
+  emplList: Employee[];
+  isSuccess: boolean;
+  promoted: number;
+}
+
+const initialState: EmplListState = {
   emplList: [],
   isSuccess: false,
   promoted: 0,
@@ -10,24 +28,25 @@ const emplListSlice = createSlice({
   name: "empl",
   initialState,
   reducers: {
-    setEmplInfo(state, action) {
+    setEmplInfo(state, action:PayloadAction<{fetchData: Employee[]; fetchStatus: boolean }>) {
       state.emplList = [...state.emplList, ...action.payload.fetchData];
       state.isSuccess = action.payload.fetchStatus;
     },
-    setAddNewEmployee(state, action) {
+    setAddNewEmployee(state, action: PayloadAction<{ formData: Employee }>) {
+      const {name, surname, position, department,salary} = action.payload.formData;
       const newEmpl = {
         id:
-          state.emplList.length !== 0
-            ? state.emplList[state.emplList.length - 1].id + 1
-            : 0,
-        ...action.payload.formData,
+            state.emplList.length !== 0
+                ? state.emplList[state.emplList.length - 1].id + 1
+                : 0,
+       name, surname, position, department, salary
       };
       return {
         ...state,
         emplList: [...state.emplList, newEmpl],
       };
     },
-    setDeleteEmployee(state, action) {
+    setDeleteEmployee(state,action: PayloadAction<number>) {
       const deletedEmployee = state.emplList.find(
         (val) => val.id === action.payload
       );
@@ -38,7 +57,7 @@ const emplListSlice = createSlice({
         (val) => val.id !== action.payload
       );
     },
-    setPromoteEmployee(state, action) {
+    setPromoteEmployee(state, action: PayloadAction<number>) {
       const employee = state.emplList.find((val) => val.id === action.payload);
       if (employee) {
         employee.promoted = !employee.promoted;
