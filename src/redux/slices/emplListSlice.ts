@@ -29,8 +29,13 @@ const emplListSlice = createSlice({
   name: "empl",
   initialState,
   reducers: {
-    setEmplInfo(state, action:PayloadAction<{fetchData: Employee[]; fetchStatus: boolean }>) {
-      state.emplList = [...state.emplList, ...action.payload.fetchData];
+    setEmplInfo(state, action: PayloadAction<{ fetchData: Employee[]; fetchStatus: boolean }>) {
+      const employeesWithPromotion = action.payload.fetchData.map((employee) => ({
+        ...employee,
+        promoted: false,
+      }));
+
+      state.emplList = [...state.emplList, ...employeesWithPromotion];
       state.isSuccess = action.payload.fetchStatus;
     },
     setAddNewEmployee(state, action: PayloadAction<{ formData: Employee }>) {
@@ -75,3 +80,5 @@ export const {
   setPromoteEmployee,
 } = emplListSlice.actions;
 export default emplListSlice.reducer;
+
+export type RootState = EmplListState;

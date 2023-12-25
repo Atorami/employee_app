@@ -1,20 +1,20 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./app-info.css";
-import { RootState } from "@reduxjs/toolkit/query/react";
+import { RootState as EmplListRootState } from "../../redux/slices/emplListSlice";
 
 const AppInfo:React.FC = () => {
-    const { emplList: emplCounter, promoted: promotedCounter } = useSelector(
-        (state: RootState<any, any, any>) => {
-            return state.empl;
+    const { emplList, promoted } = useSelector(
+        (state: EmplListRootState) => {
+            return state;
         }
     );
 
     return (
         <div className="app-info">
             <h1>Employee Management System</h1>
-            <h2>Number of employees: {emplCounter.length} </h2>
-            <h2>Will get a promotion: {promotedCounter} </h2>
+            <h2>Number of employees: {emplList.length} </h2>
+            <h2>Will get a promotion: {promoted} </h2>
         </div>
     );
 };

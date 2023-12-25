@@ -7,6 +7,7 @@ interface Employee {
   position: string;
   department: string;
   salary: number;
+  promoted: boolean;
 }
 
 export const employeeApi = createApi({

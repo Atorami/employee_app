@@ -2,19 +2,39 @@ import { useState } from "react";
 import "./employees-add-form.css";
 import { useDispatch } from "react-redux";
 import { setAddNewEmployee } from "../../redux/slices/emplListSlice";
+import React from "react";
+
+
+interface Employee {
+  id: number;
+  name: string;
+  surname: string;
+  position: string;
+  department: string;
+  salary: number;
+  promoted: boolean;
+}
+
+interface FormData {
+  name: string;
+  surname: string;
+  position: string;
+  department: string;
+  salary: number;
+}
 
 export const EmployeesAddForm = () => {
   const dispatch = useDispatch();
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: "",
     surname: "",
     position: "",
     department: "",
-    salary: "",
+    salary: 0,
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -22,16 +42,21 @@ export const EmployeesAddForm = () => {
     }));
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(setAddNewEmployee({ formData }));
+    const newEmployee: Employee = {
+      id: 0,
+      promoted: false,
+      ...formData,
+    };
+    dispatch(setAddNewEmployee({ formData:newEmployee}));
 
     setFormData({
       name: "",
       surname: "",
       position: "",
       department: "",
-      salary: "",
+      salary: 0,
     });
   };
 

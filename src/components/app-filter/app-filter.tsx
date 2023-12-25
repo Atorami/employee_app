@@ -1,3 +1,4 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setClearFilter,
@@ -15,9 +16,15 @@ interface FilterButton {
   action: (value: boolean) => void;
 }
 
+interface FilterState {
+  all: boolean;
+  salary: boolean;
+  promote: boolean;
+}
+
 const AppFilter: React.FC = () => {
   const dispatch = useDispatch();
-  const filter = useSelector((state: RootState) => state.filter);
+  const filter = useSelector((state: { filter: FilterState }) => state.filter);
 
   const handleFilterClick = (action: (value: boolean) => void) => {
     dispatch(action(!filter[action.name]));

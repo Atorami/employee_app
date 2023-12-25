@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface FilterState {
   all: boolean;
@@ -6,27 +6,26 @@ interface FilterState {
   promote: boolean;
 }
 
-const initialState:FilterState = {
+const initialState: FilterState = {
   all: false,
   salary: false,
   promote: false,
 };
 
 const filterSlice = createSlice({
-  name: "filter",
+  name: 'filter',
   initialState,
   reducers: {
-    setClearFilter: (state, action) => {
+    setClearFilter: (state, action: PayloadAction<boolean>) => {
       state.all = action.payload;
-      //clear another filters
       state.salary = false;
       state.promote = false;
     },
-    setSalaryFilter: (state, action) => {
+    setSalaryFilter: (state, action: PayloadAction<boolean>) => {
       state.salary = action.payload;
       state.all = false;
     },
-    setPromoteFilter: (state, action) => {
+    setPromoteFilter: (state, action: PayloadAction<boolean>) => {
       state.promote = action.payload;
       state.all = false;
     },
@@ -34,5 +33,7 @@ const filterSlice = createSlice({
 });
 
 export const { setClearFilter, setSalaryFilter, setPromoteFilter } =
-  filterSlice.actions;
+    filterSlice.actions;
 export default filterSlice.reducer;
+
+export type RootState = FilterState;

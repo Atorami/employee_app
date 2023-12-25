@@ -11,12 +11,18 @@ const rootReducer = combineReducers({
   filter: filterSlice,
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
-
 const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(employeeApi.middleware),
 });
 
+export type RootState = {
+  [employeeApi.reducerPath]: ReturnType<typeof employeeApi.reducer>;
+  empl: ReturnType<typeof emplListSlice>;
+  search: ReturnType<typeof searchSlice>;
+  filter: ReturnType<typeof filterSlice>;
+};
+
 export default store;
+// export type RootState = ReturnType<typeof store.getState>

@@ -1,10 +1,21 @@
 import { useDispatch } from "react-redux";
 import { setDeleteEmployee } from "../../redux/slices/emplListSlice";
 import { setPromoteEmployee } from "../../redux/slices/emplListSlice";
+import React from "react";
 
 import "./employees-list-item.css";
 
-const EmployeesListItem = (props) => {
+interface Employee {
+    id: number;
+    name: string;
+    surname: string;
+    position: string;
+    department: string;
+    salary: number;
+    promoted: boolean;
+}
+
+const EmployeesListItem:React.FC<Employee> = (props) => {
   const dispatch = useDispatch();
   const { id, name, surname, salary, position, department } = props;
 
