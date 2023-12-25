@@ -5,17 +5,25 @@ import {
   setPromoteFilter,
 } from "../../redux/slices/filterSlice";
 
+import { RootState } from "@reduxjs/toolkit/query/react";
+
 import "./app-filter.css";
 
-const AppFilter = () => {
-  const dispatch = useDispatch();
-  const filter = useSelector((state) => state.filter);
+interface FilterButton {
+  name: string;
+  label: string;
+  action: (value: boolean) => void;
+}
 
-  const handleFilterClick = (action) => {
+const AppFilter: React.FC = () => {
+  const dispatch = useDispatch();
+  const filter = useSelector((state: RootState) => state.filter);
+
+  const handleFilterClick = (action: (value: boolean) => void) => {
     dispatch(action(!filter[action.name]));
   };
 
-  const buttonsData = [
+  const buttonsData: FilterButton[] = [
     { name: "all", label: "All employees", action: setClearFilter },
     {
       name: "promote",
@@ -34,14 +42,14 @@ const AppFilter = () => {
     const clazz = active ? "btn-light" : "btn-outline-light";
 
     return (
-      <button
-        type="button"
-        className={`btn ${clazz}`}
-        key={name}
-        onClick={() => handleFilterClick(action)}
-      >
-        {label}
-      </button>
+        <button
+            type="button"
+            className={`btn ${clazz}`}
+            key={name}
+            onClick={() => handleFilterClick(action)}
+        >
+          {label}
+        </button>
     );
   });
 

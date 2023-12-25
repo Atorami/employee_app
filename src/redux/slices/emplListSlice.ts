@@ -9,6 +9,7 @@ interface Employee {
   position: string;
   department: string;
   salary: number;
+  promoted: boolean;
 }
 
 //state interface description
@@ -39,7 +40,7 @@ const emplListSlice = createSlice({
             state.emplList.length !== 0
                 ? state.emplList[state.emplList.length - 1].id + 1
                 : 0,
-       name, surname, position, department, salary
+       name, surname, position, department, salary, promoted: false,
       };
       return {
         ...state,
